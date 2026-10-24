@@ -26,11 +26,21 @@ SafeTruck DDD project overview:
 - Included QA coverage for unit/integration checks and model behavior invariance.
 
 Setup:
-  python3 -m pip install -r requirements.txt
-  pytest -q
+On Debian/Ubuntu, install virtual-environment support if needed (for Python
+3.12, use `sudo apt install python3.12-venv`; otherwise install the package
+matching your Python version, or `python3-venv`):
+
+Create and activate a project virtual environment, then install dependencies:
+  python3 -m venv .venv
+  source .venv/bin/activate
+  python -m pip install -r requirements.txt
+  python -m pytest -q
+
+Run the lint demonstration:
+  python run_lint_pipeline.py
 
 Run the API locally:
-  uvicorn safetruck.api:app --reload
+  python -m uvicorn safetruck.api:app --reload
 
 Open `http://127.0.0.1:8000/` for service information, or
 `http://127.0.0.1:8000/docs` for the interactive API documentation. Submit
