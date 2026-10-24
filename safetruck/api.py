@@ -10,6 +10,16 @@ app = FastAPI(
 )
 pipeline = ClosedLoopInferencePipeline()
 
+
+@app.get("/", summary="API service information")
+async def service_info():
+    return {
+        "service": app.title,
+        "docs": app.docs_url,
+        "inference_endpoint": "/api/v1/inference",
+    }
+
+
 class TelemetryPayload(BaseModel):
     current_angle: float = Field(..., description="Latest raw steering angle reading from CAN bus", example=4.5)
     angle_window: List[float] = Field(..., min_items=5, description="30s historic sliding angle lookback array")
