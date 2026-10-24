@@ -39,6 +39,27 @@ Create and activate a project virtual environment, then install dependencies:
 Run the lint demonstration:
   python run_lint_pipeline.py
 
+Example output (Pylint's individual warning locations and score formatting can
+vary by version):
+
+```text
+$ python run_lint_pipeline.py
+============================================================
+1. RUNNING INITIAL PYLINT ASSESSMENT (RESEARCH CODE DRAFT)
+============================================================
+************* Module models_raw
+... draft-style warnings: bad indentation, missing docstrings, unused imports ...
+Your code has been rated at 0.00/10
+
+============================================================
+2. RUNNING PRODUCTION PYLINT ASSESSMENT (REFACTORED MODULE)
+============================================================
+Your code has been rated at 10.00/10
+```
+
+The low draft score is intentional: the script compares an unformatted research
+draft with a refactored version. A successful run exits with status `0`.
+
 Run the API locally:
   python -m uvicorn safetruck.api:app --reload
 
